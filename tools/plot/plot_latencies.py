@@ -39,7 +39,7 @@ class LatencyExtractor(object):
 
         for query in queries:
             l_q = int(query)
-            query_lat = self.raw[:, 2][queries_column == query]
+            query_lat = self.raw[:, 3][queries_column == query]
             result.append([l_q] + self._get_data(query_lat))
 
         return np.array(result)
@@ -51,7 +51,7 @@ class LatencyExtractor(object):
 
     def get_ymax(self):
         """Get max latency value for deminsioning of the y axis"""
-        return self.raw[:, 2].max() / self.CONVERT + .1
+        return self.raw[:, 3].max() / self.CONVERT + .1
 
     def plot(self, data, ymax=1.5):
         """Takes latency data and plots bar charts"""
@@ -114,15 +114,15 @@ class ThroughputExtractor(object):
                             (self.raw[:, 0] <= last)]
         else:
             raw = self.raw
-        test_start = raw[:, 1].min()
-        test_finish = raw[:, 1].max()
+        test_start = raw[:, 2].min()
+        test_finish = raw[:, 2].max()
         result = []
 
         for time in xrange(0, int(test_finish - test_start), 5):
             start = time
             end = time + SLICE_SIZE
-            time_slice = raw[(raw[:, 1] >= start + test_start)
-                             & (raw[:, 1] < end + test_start)][:, 2]
+            time_slice = raw[(raw[:, 2] >= start + test_start)
+                             & (raw[:, 2] < end + test_start)][:, 2]
             throughput = float(len(time_slice)) / SLICE_SIZE
             result.append(throughput)
 

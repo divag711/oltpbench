@@ -17,6 +17,7 @@
 package com.oltpbenchmark.api;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.sql.Savepoint;
@@ -87,6 +88,30 @@ public abstract class Worker<T extends BenchmarkModule> implements Runnable {
             if (this.wrkld.getDBType().shouldUseTransactions()) {
                 this.conn.setTransactionIsolation(this.wrkld.getIsolationMode());
             }
+	 
+	     PreparedStatement st = this.conn.prepareStatement("Update pg_settings SET setting = ?" + "where name='work_mem'");
+            st.setString(1, this.wrkld.getWorkMem());
+            st.executeUpdate();
+
+            st = this.conn.prepareStatement("Update pg_settings SET setting = ?" + "where name='random_page_cost'");
+            st.setFloat(1, this.wrkld.getRandomPageCost());
+            st.executeUpdate();
+
+            st = this.conn.prepareStatement("Update pg_settings SET setting = ?" + "where name='default_statistics_target'");
+            st.setInt(1, this.wrkld.getDefaultStatisticsTarget());
+            st.executeUpdate();
+
+            st = this.conn.prepareStatement("Update pg_settings SET setting = ?" + "where name='effective_cache_size'");
+            st.setString(1, this.wrkld.getEffectiveCacheSize());
+            st.executeUpdate();
+
+            st = this.conn.prepareStatement("Update pg_settings SET setting = ?" + "where name='index_to_consider'");
+            st.setString(1, this.wrkld.getIndexToConsider());
+            st.executeUpdate();
+
+            st.close();
+
+
         } catch (SQLException ex) {
             throw new RuntimeException("Failed to connect to database", ex);
         }

@@ -85,7 +85,58 @@ public class WorkloadConfiguration {
 	private boolean recordAbortMessages = false;
     private String dataDir = null;
 
+ private String workMem;
+        private float randomPageCost;
+        private int defaultStatisticsTarget;
+        private String maintenanceWorkMem;
+        private String effectiveCacheSize;
+        private String indexToConsider;
+
+        public void setWorkMem(String workmem) {
+                this.workMem = workmem;
+        }
+        public String getWorkMem() {
+                return workMem;
+        }
+
+        public void setRandomPageCost(float randomCost) {
+                this.randomPageCost = randomCost;
+        }
+        public float getRandomPageCost() {
+                return randomPageCost;
+        }
+
+        public void setDefaultStatisticsTarget (int statsTarget) {
+                this.defaultStatisticsTarget = statsTarget;
+        }
+        public int getDefaultStatisticsTarget() {
+                return defaultStatisticsTarget;
+        }
+
+        public void setMaintenanceWorkMem (String maintenanceMem) {
+                this.maintenanceWorkMem = maintenanceMem;
+        }
+        public String getMaintenanceWorkMem() {
+                return maintenanceWorkMem;
+        }
+
+        public void setEffectiveCacheSize (String effectiveCache) {
+                this.effectiveCacheSize = effectiveCache;
+        }
+        public String getEffectiveCacheSize() {
+                return effectiveCacheSize;
+        }
+
+        public void setIndexToConsider(String toConsider) {
+                this.indexToConsider = toConsider;
+        }
+
+        public String getIndexToConsider() {
+                return indexToConsider;
+        }
+
  
+
 
     public void addWork(int time, int warmup, int rate, List<String> weights, boolean rateLimited, boolean disabled, boolean serial, boolean timed, int active_terminals, Phase.Arrival arrival) {
         works.add(new Phase(benchmarkName, numberOfPhases, time, warmup, rate, weights, rateLimited, disabled, serial, timed, active_terminals, arrival));

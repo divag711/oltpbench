@@ -13,7 +13,15 @@
 
     <!-- Scale factor is the number of warehouses in TPCC -->
     <scalefactor>2</scalefactor>
+
+    <workMem>4MB</workMem>
+    <randomPageCost>4</randomPageCost>
+    <defaultStatisticsTarget>100</defaultStatisticsTarget>
+    <maintenanceWorkMem>64MB</maintenanceWorkMem>
+    <effectiveCacheSize>4GB</effectiveCacheSize>
+    <indexToConsider> </indexToConsider>
     
+
     <!-- The workload -->
     <terminals>20</terminals>
     <works>

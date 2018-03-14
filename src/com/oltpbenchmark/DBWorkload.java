@@ -233,6 +233,37 @@ public class DBWorkload {
                 // Nothing to do here !
             }
 
+	    if(xmlConfig.containsKey("workMem")) {
+                String workMem = xmlConfig.getString("workMem");
+                wrkld.setWorkMem(workMem);
+            }
+ 
+            if(xmlConfig.containsKey("randomPageCost")) {
+                float randomCost = xmlConfig.getFloat("randomPageCost");
+                wrkld.setRandomPageCost(randomCost);
+            }
+
+            if(xmlConfig.containsKey("defaultStatisticsTarget")) {
+                 int defaultTarget = xmlConfig.getInt("defaultStatisticsTarget");
+                 wrkld.setDefaultStatisticsTarget(defaultTarget);
+            }
+
+            if(xmlConfig.containsKey("maintenanaceWorkMem")) {
+                String maintenanceMem = xmlConfig.getString("maintenanceWorkMem");
+                wrkld.setMaintenanceWorkMem(maintenanceMem);
+            }
+
+            if(xmlConfig.containsKey("effectivaCacheSize")) {
+                String effectiveCache = xmlConfig.getString("effectiveCacheSize");
+                wrkld.setEffectiveCacheSize(effectiveCache);
+            }
+
+            if(xmlConfig.containsKey("indexToConsider")) {
+                String indexConsider = xmlConfig.getString("indexToConsider");
+                wrkld.setIndexToConsider(indexConsider);
+   	    }
+
+
             // ----------------------------------------------------------------
             // CREATE BENCHMARK MODULE
             // ----------------------------------------------------------------
